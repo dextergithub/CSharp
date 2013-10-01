@@ -1,0 +1,20 @@
+// atgad.idl : IDL source for atgad.dll
+//
+
+// This file will be processed by the MIDL tool to
+// produce the type library (atgad.tlb) and marshalling code.
+
+import "oaidl.idl";
+import "ocidl.idl";
+
+[
+	uuid(9019F2D4-4880-4EFA-A1AA-9FB02F196493),
+	version(1.0),
+	helpstring("atgad 1.0 Type Library")
+]
+library ATGADLib
+{
+	importlib("stdole32.tlb");
+	importlib("stdole2.tlb");
+
+};

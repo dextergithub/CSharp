@@ -1,0 +1,8 @@
+
+BLOCKED FILE ALERT
+
+A file has been blocked due to the 'Filter Binaries and Executables' rule.
+Context: 'atgad.dll'
+Disallowed due to 
+Ticket Number: '4360-523d-0108-0001'
+See your system administrator for further information. Copyright 1999-2011 McAfee, Inc.All Rights Reserved.http://www.mcafee.com
