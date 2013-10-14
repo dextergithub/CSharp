@@ -50,6 +50,8 @@
             this.Name = "Form1";
             this.Text = "WinTop";
             this.Load += new System.EventHandler(this.Form1_Load);
+            this.Activated += new System.EventHandler(this.Form1_Activated);
+            this.Click += new System.EventHandler(this.Form1_Click);
             this.ResumeLayout(false);
 
         }

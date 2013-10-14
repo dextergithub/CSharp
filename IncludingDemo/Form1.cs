@@ -26,7 +26,7 @@ namespace IncludingDemo
             InitializeComponent();
             this.Load += new EventHandler(Form1_Load);
             this.GotFocus += new EventHandler(Form1_GotFocus);
-          
+
 
         }
 
@@ -48,7 +48,7 @@ namespace IncludingDemo
         public FormWindowState PreFormWindowState = FormWindowState.Normal;
 
         public int Margin_Height = 10;
-        public int Margin_Weight = 0;      
+        public int Margin_Weight = 0;
 
         private bool IsInit = true;
 
@@ -62,7 +62,7 @@ namespace IncludingDemo
             {
                 while (true)
                 {
-                    this.Frame3D_Handle = IncludingHelper.FindWindow(null,DllConfig .Default.TitleStringList);
+                    this.Frame3D_Handle = IncludingHelper.FindWindow(null, DllConfig.Default.TitleStringList);
                     //MessageBox.Show("7");
 
                     if (Frame3D_Handle > 0)
@@ -84,7 +84,7 @@ namespace IncludingDemo
         private void SetChilden(int win)
         {
             if (win <= 0) return;
-
+            if (this.IsDisposed) return;
             //MessageBox.Show("10");
             if (this.InvokeRequired)
             {
@@ -94,10 +94,12 @@ namespace IncludingDemo
             else
             {
                 IncludingHelper.SetParent(win, (int)this.Handle);
-                SetFrame3DPostion();              
+                SetFrame3DPostion();
 
                 this.IsInit = false;
             }
+
+
         }
 
         private void SetFrame3DPostion()
@@ -105,16 +107,16 @@ namespace IncludingDemo
             int win = this.Frame3D_Handle;
             //Childre_Rect = new Rectangle();
             //IncludingHelper.GetWindowRect(win, ref Childre_Rect);
-            Size defautsize =DllConfig.Default.Frame3DSize;
-            if (defautsize.Width  <= 0 || defautsize.Height  <= 0)
+            Size defautsize = DllConfig.Default.Frame3DSize;
+            if (defautsize.Width <= 0 || defautsize.Height <= 0)
             {
                 defautsize.Width = this.Width;
                 defautsize.Height = this.Height;
             }
 
             IncludingHelper.MoveWindow(win,
-               DllConfig.Default.Frame3DLocation.X ,
-               DllConfig.Default.Frame3DLocation.Y ,
+               DllConfig.Default.Frame3DLocation.X,
+               DllConfig.Default.Frame3DLocation.Y,
                   defautsize.Width, defautsize.Height, true);
         }
 
@@ -122,16 +124,18 @@ namespace IncludingDemo
         {
             if (this.process != null)
             {
-                if (!this.process.HasExited)
-                {
-                    this.process.Kill();
-                }
+
+                this.process.Close();
+                this.process.WaitForExit();
+                this.process.Dispose();
+                
+                this.process = null;
             }
         }
 
         private void StartTarget()
         {
-            process.StartInfo.FileName =DllConfig.Default.SubAppPath;
+            process.StartInfo.FileName = DllConfig.Default.SubAppPath;
             process.Start();
         }
 
@@ -143,7 +147,7 @@ namespace IncludingDemo
                 SetFrame3DPostion();
             }
 
-        }     
+        }
 
         private void Form1_ResizeEnd(object sender, EventArgs e)
         {
@@ -151,10 +155,11 @@ namespace IncludingDemo
             SetFrame3DPostion();
         }
 
-       
+
 
         private void SetSizeThis()
         {
+            if (this.IsDisposed) return;
             Rectangle rect = new Rectangle();
             IncludingHelper.GetWindowRect((int)this.Parent_Handle, ref rect);
 

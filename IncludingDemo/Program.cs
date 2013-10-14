@@ -26,6 +26,7 @@ namespace IncludingDemo
         [STAThread]
         public static int ATNewInstance(IntPtr pwind)
         {
+            ATDeleteInstance();
             
             int margin_top = 0;
             int margin_left = 0;
@@ -70,9 +71,21 @@ namespace IncludingDemo
         [STAThread]
         public static  int ATDeleteInstance()
         {
+           // MessageBox.Show("ATDeleteInstance");
             if (_sigle != null)
             {
-                _sigle.Close();
+                try
+                {
+                    _sigle.Close();
+                    _sigle.Dispose();
+                    _sigle = null;
+                }
+                catch (Exception ex)
+                {
+                    
+                    
+                }
+               
             }
             return 0;
         }

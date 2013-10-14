@@ -18,13 +18,24 @@ namespace WinTop
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            DllHelper.ATNewInstance(this.Handle);
+          
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
+            DllHelper.ATNewInstance(this.Handle);
            
-           
+        }
+
+        private void Form1_Click(object sender, EventArgs e)
+        {
+            DllHelper.ATNewInstance(this.Handle);
+
+        }
+
+        private void Form1_Activated(object sender, EventArgs e)
+        {
+            DllHelper.ATNewInstance(this.Handle);
         }
     }
 }

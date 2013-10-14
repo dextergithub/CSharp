@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Config>
-  <SubAppPath>D:\ATG\demo20130923\demo.exe</SubAppPath>
-  <TitleStringList>bul</TitleStringList>
+  <SubAppPath>C:\ProgramData\WebEx\WebEx\1324\Client.exe</SubAppPath>
+  <TitleStringList>DemoClient</TitleStringList>
   <Frame3DLocation>-5, -25</Frame3DLocation>
   <FrameMidLocation>0, 0</FrameMidLocation>
   <Frame3DSize>0, 0</Frame3DSize>
