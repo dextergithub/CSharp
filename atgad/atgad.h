@@ -4,7 +4,7 @@
 
 
  /* File created by MIDL compiler version 7.00.0500 */
-/* at Thu Sep 26 21:52:57 2013
+/* at Wed Jan 08 20:50:46 2014
  */
 /* Compiler settings for .\atgad.idl:
     Oicf, W1, Zp8, env=Win32 (32b run)

@@ -218,6 +218,7 @@
 			UseOfATL="2"
 			ATLMinimizesCRunTimeLibraryUsage="true"
 			CharacterSet="2"
+			ManagedExtensions="1"
 			>
 			<Tool
 				Name="VCPreBuildEventTool"

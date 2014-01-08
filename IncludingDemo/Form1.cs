@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Linq;
+
 using System.Text;
 using System.Windows.Forms;
 using System.Diagnostics;
@@ -122,15 +122,23 @@ namespace IncludingDemo
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (this.process != null)
+            try
+            {
+                if (this.process != null)
+                {
+
+                    this.process.Close();
+                    this.process.WaitForExit();
+                    this.process.Dispose();
+
+                    this.process = null;
+                }
+            }
+            catch (Exception)
             {
 
-                this.process.Close();
-                this.process.WaitForExit();
-                this.process.Dispose();
-                
-                this.process = null;
             }
+
         }
 
         private void StartTarget()

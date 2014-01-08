@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
+
 using System.Windows.Forms;
 using IncludingDemo;
 using IncludingDemo.Properties;
@@ -27,15 +27,15 @@ namespace IncludingDemo
         public static int ATNewInstance(IntPtr pwind)
         {
             ATDeleteInstance();
-            
+
             int margin_top = 0;
             int margin_left = 0;
             //MessageBox.Show("Test");
             try
             {
-               //MessageBox.Show("1");
+                //MessageBox.Show("1");
                 if (_sigle == null) _sigle = new Form1();
-               //MessageBox.Show("2");
+                //MessageBox.Show("2");
                 _sigle.Parent_Handle = pwind;
                 IncludingHelper.SetParent((int)_sigle.Handle, (int)pwind);
                 System.Drawing.Rectangle rect = new System.Drawing.Rectangle();
@@ -43,21 +43,19 @@ namespace IncludingDemo
 
                 if (rect != null && rect.Height * rect.Width > 0)
                 {
-                    _sigle.Width = rect.Width-margin_left;
-                    _sigle.Height = rect.Height-margin_top;
+                    _sigle.Width = rect.Width - margin_left;
+                    _sigle.Height = rect.Height - margin_top;
                 }
-                _sigle.Location = DllConfig.Default.FrameMidLocation;
-               //MessageBox.Show("3");
-              //IncludingHelper.MoveWindow((int)_sigle.Handle, 0, 0, _sigle.Width - 20, _sigle.Height - 45, true);
-               //MessageBox.Show("4");
-                _sigle.Show();
-               //MessageBox.Show("5");
+                _sigle.Location = DllConfig.Default.FrameMidLocation;              
+                _sigle.Show();               
                 return (int)_sigle.Handle;
 
             }
             catch (Exception ex)
             {
+#if DEBUG
                 MessageBox.Show(ex.Message + "," + ex.StackTrace);
+#endif
             }
 
             return 0;
@@ -65,27 +63,32 @@ namespace IncludingDemo
 
         static void _parent_FormClosing(object sender, FormClosingEventArgs e)
         {
-            _sigle.Close();
+            try
+            {
+                _sigle.Close();
+            }
+            catch (Exception)
+            {
+            }
+
         }
 
         [STAThread]
-        public static  int ATDeleteInstance()
+        public static int ATDeleteInstance()
         {
-           // MessageBox.Show("ATDeleteInstance");
-            if (_sigle != null)
+            try
             {
-                try
+                if (_sigle != null)
                 {
+
                     _sigle.Close();
                     _sigle.Dispose();
                     _sigle = null;
                 }
-                catch (Exception ex)
-                {
-                    
-                    
-                }
-               
+
+            }
+            catch (Exception ex)
+            {
             }
             return 0;
         }
